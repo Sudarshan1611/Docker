@@ -5,7 +5,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.build('your-image-name:tag')
+                    docker.build('dockerimage:${buildNumber}')
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    docker.image('your-image-name:tag').run()
+                    docker.image('dockerimage:${buildNumber}').run()
                 }
             }
         }
