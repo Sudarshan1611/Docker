@@ -1,25 +1,32 @@
 pipeline {
     agent any
     
+    environment {
+        DOCKER_IMAGE_NAME = 'Docker'
+        DOCKER_IMAGE_TAG = 'latest' // You can use any tag here, e.g., a version number or commit hash
+    }
+    
     stages {
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
                 script {
-                    docker.build('dockerimage:${buildNumber}')
+                    // Build Docker image
+                    docker.build("${Docker}:${latest}")
                 }
             }
         }
         
-        stage('Run Tests') {
+        stage('Test') {
             steps {
-                // Run tests here
+                // Run tests here if applicable
             }
         }
         
         stage('Deploy') {
             steps {
                 script {
-                    docker.image('dockerimage:${buildNumber}').run()
+                    // Run Docker container from the built image
+                    docker.image("${Docker}:${latest}").run("-p 8080:80 --name Dockercontainer -d")
                 }
             }
         }
