@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         DOCKER_IMAGE_NAME = 'Docker'
-        DOCKER_IMAGE_TAG = 'latest' // You can use any tag here, e.g., a version number or commit hash
+        DOCKER_IMAGE_TAG = 'latest'
     }
     
     stages {
@@ -26,9 +26,10 @@ pipeline {
             steps {
                 script {
                     // Run Docker container from the built image
-                    docker.image("${Docker}:${latest}").run("-p 8080:80 --name Dockercontainer -d")
+                    docker.image("${Docker}:${latest}").run("-p 8080:80 --name your-container-name -d")
                 }
             }
         }
     }
 }
+
