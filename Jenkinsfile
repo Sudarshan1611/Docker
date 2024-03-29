@@ -9,10 +9,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                script {
-                    // Build Docker image
-                    docker.build("${Docker}:${latest}")
-                }
+                 docker.build("${Docker}:${latest}")
             }
         }
         
@@ -24,10 +21,7 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                script {
-                    // Run Docker container from the built image
-                    docker.image("${Docker}:${latest}").run("-p 8080:80 --name your-container-name -d")
-                }
+                docker.image("${Docker}:${latest}").run("-p 8080:80 --name your-container-name -d")
             }
         }
     }
