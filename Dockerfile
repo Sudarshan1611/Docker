@@ -2,12 +2,11 @@ FROM python:3.8-buster
 
 WORKDIR /app
 
-# Install Flask and other dependencies
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
+
+RUN pip install Flask
 
 # Copy the application code
-COPY . .
+COPY ./app
 
 # Expose port 5000
 EXPOSE 5000
